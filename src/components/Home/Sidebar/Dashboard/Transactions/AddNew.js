@@ -164,3 +164,12 @@ const AddNew = ({ addTransaction }) => {
 
 export default AddNew;
 
+
+
+
+
+
+
+
+
+

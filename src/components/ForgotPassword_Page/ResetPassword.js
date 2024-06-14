@@ -1,5 +1,7 @@
 // import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
  
 // function ResetPassword() {
 //   const navigate = useNavigate();
@@ -92,14 +94,6 @@
  
 
 
-
-
-
-
-
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 function ResetPassword() {
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState('');
@@ -128,7 +122,7 @@ function ResetPassword() {
     const email = localStorage.getItem('email_response');
 
     try {
-      const response = await fetch('http://192.168.0.113:8082/api/reset-password', {  
+      const response = await fetch('http://192.168.0.113:8082/api/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,32 +145,34 @@ function ResetPassword() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full md:w-96">
-        <h2 className="text-2xl mb-4 text-center">Reset Password</h2>
+      <div className="bg-white p-8 rounded-lg shadow-md w-full md:w-96 mt-8 mb-8">
+        <h2 className="text-3xl mb-4 text-center">Reset Password</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
+          <p className="mb-4 text-sm text-gray-600"> Enter new password</p>
             <input
               type="password"
               placeholder="New Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-blue-500 bg-gray-200"
               required
             />
           </div>
           <div className="mb-4">
+          <p className="mb-4 text-sm text-gray-600"> Confirm password </p>
             <input
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-gray-300 rounded p-2 w-80 focus:outline-none focus:border-blue-500 bg-gray-200"
               required
             />
           </div>
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 w-full"
+            className="bg-indigo-800 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 w-full"
           >
             Reset Password
           </button>

@@ -89,7 +89,7 @@ const Header = () => {
   return (
     <header className="bg-white py-1 px-5 flex justify-between items-center border-b shadow-sm h-20 w-full fixed top-0 left-0">
       <div className="logo">
-        <img src={headerimg} alt="Financial Works Logo" className="h-12 mt-4" />
+        <img src={headerimg} alt="Financial Works Logo" className="h-12 mt-4 ml-8" />
       </div>
       <div className="flex items-center">
         <div className="mr-5 text-right">

@@ -52,7 +52,7 @@ function ResetPassword() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-screen bg-gray-200">
       <div className="bg-white p-12 rounded-xl shadow-md w-full max-w-xs font-semibold " style={{ minHeight: '350px' }}>
         <h2 className="text-xl mb-6 mt-7 text-center">Create a new password</h2>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
@@ -62,7 +62,7 @@ function ResetPassword() {
               placeholder="New Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-56 px-3 py-1 border rounded-md focus:outline-none bg-gray-200 "
+              className="w-52 px-3 py-1 border rounded-md focus:outline-none bg-gray-200 "
               required
             />
           </div>
@@ -72,13 +72,13 @@ function ResetPassword() {
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-56 px-3 py-1 border rounded-md focus:outline-none bg-gray-200 "
+              className="w-52 px-3 py-1 border rounded-md focus:outline-none bg-gray-200 mb-3 "
               required
             />
           </div>
           <button
             type="submit"
-            className="w-56 bg-blue-900 text-white px-3 py-1 rounded-md"
+            className="w-52 bg-blue-900 text-white px-3 py-1 rounded-md"
           >
             Reset Password
           </button>

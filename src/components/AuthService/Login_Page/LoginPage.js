@@ -32,7 +32,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-screen bg-gray-200">
       <div className="bg-white p-12 rounded-xl shadow-md w-full max-w-xs">
         <img
           src={loginImg} 

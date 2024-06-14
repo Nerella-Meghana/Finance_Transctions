@@ -47,10 +47,10 @@ function SignupPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-screen bg-gray-200">
       {isRegistered ? (
         <div className="bg-white p-12 rounded-xl shadow-md w-full max-w-sm">
-          <h2 className="text-2xl font-bold mb-4">Successfully Registered</h2>
+          <h2 className="text-xl font-bold mb-4">Successfully Registered</h2>
           <button onClick={handleOk} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
             OK
           </button>
@@ -132,7 +132,7 @@ function SignupPage() {
             <p className="mt-4 text-center text-sm">
               Have an account? <Link to="/login" className="text-blue-500 hover:underline">Login now</Link>
             </p>
-            {error && <p className="mt-2 text-center text-red-500">{error}</p>}
+            {error && <p className="mt-2 text-center text-blue-500">{error}</p>}
           </form>
         </div>
       )}

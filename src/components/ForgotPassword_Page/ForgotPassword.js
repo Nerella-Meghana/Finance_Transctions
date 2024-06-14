@@ -40,7 +40,7 @@ function ForgotPassword() {
     }
   };
 return (
-  <div className="flex items-center justify-center h-screen bg-gray-100 mx-auto">
+  <div className="flex items-center justify-center h-screen bg-gray-200 mx-auto">
     <div className="bg-white p-12 rounded-xl shadow-md w-full max-w-xs">
       <h2 className="text-xl pt-4 pb-[1rem] flex items-center justify-center font-semibold mb-3">Forgot your password?</h2>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">

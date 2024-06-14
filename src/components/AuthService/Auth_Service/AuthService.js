@@ -2,10 +2,15 @@ import {loginaxios} from "../../../axios"
 
 
 export const AuthService = {
+
   login: async (userName, password) => {
     try {
       const response = await loginaxios.post('/api/login', { userName, password });
+      const userResponseId = response.data.userId;
+      console.log(userResponseId);
+      localStorage.setItem('user_id_response', userResponseId); 
       return response.data;
+      
     } catch (error) {
       throw new Error('Login failed');
     }

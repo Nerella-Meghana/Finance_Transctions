@@ -29,9 +29,7 @@ function SignupPage() {
       console.log('API response:', response); // Debugging line
       if (response.status === 201 || response.status === 200) { // Check for successful registration status
         console.log(response);
-        const userResponseId = response.data.id;
-
-        localStorage.setItem('user_id_response', userResponseId);
+        
         setIsRegistered(true); // Set registration state to true upon success
       } else {
         setError("Failed to register");

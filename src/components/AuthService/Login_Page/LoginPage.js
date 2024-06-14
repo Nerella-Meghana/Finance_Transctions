@@ -19,6 +19,7 @@ function LoginPage() {
     try {
       const data = await AuthService.login(userName, password);
       console.log(data.token);
+      
       if (data.token) {
         AuthService.setToken(data.token);
         setError("Successfully logged in!");

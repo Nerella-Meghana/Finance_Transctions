@@ -1,0 +1,114 @@
+
+
+/* Light theme */
+/* body.light-mode {
+    background-color: #ffffff;
+    color: #111111;
+  }
+  
+  header.light-mode {
+    background-color: #f0f0f0;
+    color: #111111;
+  }
+  
+  button.light-mode {
+    background-color: #3990ff;
+    color: #ffffff;
+    border: 1px solid #02367d;
+  }
+  
+  /* Dark theme */
+  /* body.dark-mode {
+    background-color: #111111;
+    color: #ffffff;
+  }
+  
+  header.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
+  button.dark-mode {
+    background-color: #265d97;
+    color: #ffffff;
+    border: 1px solid #132f4c;
+  }
+    */
+
+
+
+
+    /* src/styles/styles.css */
+/* body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+header.light-mode {
+    background-color: white;
+    color: black;
+}
+
+header.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+.theme-toggle.light-mode {
+    background-color: gray;
+    color: black;
+}
+
+.theme-toggle.dark-mode {
+    background-color: darkgray;
+    color: white;
+}
+
+.logout.light-mode {
+    background-color: red;
+    color: white;
+}
+
+.logout.dark-mode {
+    background-color: darkred;
+    color: white;
+} */
+
+
+
+
+/* styles.css */
+
+/* :root {
+    --primary-color: #3990FF;
+    --primary-dark-color: #02367D;
+    --text-color-light: #111111;
+    --background-light: #fff;
+    
+    --primary-color-dark: #265D97;
+    --primary-dark-color-dark: #132F4C;
+    --text-color-dark: #ffffff;
+    --background-dark: #111;
+  } */
+  
+
+
+  /* styles.css */
+
+body.light {
+    background-color: #ffffff;
+    color: #111111;
+  }
+  
+  body.dark {
+    background-color: #111111;
+    color: #ffffff;
+  }
+  
+  /* Additional styles for light and dark themes */
+  

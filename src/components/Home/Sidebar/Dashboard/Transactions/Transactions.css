@@ -77,3 +77,53 @@
 
 
 
+
+
+
+/* .datagrid-container {
+  height: 100%;
+  width: 100%;
+  max-height: 400px;
+}
+
+/* Responsive adjustments */
+/* @media (max-width: 600px) {
+  .MuiToolbar-root {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .MuiButton-root {
+    margin-top: 16px;
+  }
+
+  .MuiGrid-root {
+    margin-bottom: 8px;
+  }
+} */ 
+
+
+
+
+
+.datagrid-container {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .MuiToolbar-root {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .MuiButton-root {
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .MuiTextField-root, .MuiSelect-root {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+}

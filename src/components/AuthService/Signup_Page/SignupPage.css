@@ -1,1 +1,51 @@
+/* .signup-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5; /* Equivalent to gray.100 
+  }  */
+  
+  /* .signup-container {
+    background-color: white;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Custom box shadow */
+    width: 100%;
+    max-width: 400px; /* Responsive width 
+  }  */
+  
+ /* .signup-img {
+    width: 230px;
+    height: 70px;
+  }  
+  
+  .signup-input {
+    width: 280px;
+    margin-left: 35px;
+  }
+  
+  .signup-input .MuiInputBase-input {
+    height: 35px;
+    padding: 10px;
+    text-align: left; /* Center align placeholder text 
+  } */
+    
+  
+/* .toggle-password-icon {
+    position: absolute;
+    right: 45px;
+    top: 6px;
+  }   
+  
+  .signup-button {
+    width: 280px;
+    margin-left: 35px;
+    height: 40px; /* Adjust height as needed 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Custom box shadow 
+  }
 
+.login-link {
+    text-decoration: none;
+    color: #1976d2; /* Custom color 
+  } */

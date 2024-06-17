@@ -74,16 +74,17 @@
 
 
 import React from 'react';
-import { useTheme, useThemeUpdate } from '../../../contexts/ThemeContext';
 import { AuthService } from '../../AuthService/Auth_Service/AuthService';
 import { useNavigate } from 'react-router-dom';
 import headerimg from '../../../Assets/images/Home_img.jpg';
 
 const Header = () => {
   const navigate = useNavigate();
-
+  const username = localStorage.getItem('username'); // Retrieve username from local storage
+ 
   const handleLogout = () => {
     AuthService.clearToken();
+    localStorage.removeItem('username'); // Remove username from local storage on logout
     navigate('/LogoutPage');
   };
 
@@ -94,8 +95,8 @@ const Header = () => {
       </div>
       <div className="flex items-center">
         <div className="mr-5 text-right">
-          <p>Full Name</p>
-          <p>Designation</p>
+          <p>Welcome</p>
+          <p>{username}</p>
         </div>
         <button 
           onClick={handleLogout} 

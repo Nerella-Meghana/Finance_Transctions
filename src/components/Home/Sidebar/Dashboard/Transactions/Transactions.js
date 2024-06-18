@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -10,8 +9,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MuiAlert from '@mui/material/Alert';
 import { finappaxios } from "../../../../../axios";
 import AddNew from './AddNew';
-
-
+import Navbar from '../../Navbar/Navbar';
+ 
 const ActionsCell = ({ onEdit, onDelete }) => (
   <div>
     <IconButton onClick={onEdit} className="text-gray-500">
@@ -22,9 +21,9 @@ const ActionsCell = ({ onEdit, onDelete }) => (
     </IconButton>
   </div>
 );
-
-
-
+ 
+ 
+ 
 const ConfirmationPopup = ({ message, onConfirm, onCancel }) => (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div className="bg-white p-4 rounded shadow-lg">
@@ -46,7 +45,7 @@ const ConfirmationPopup = ({ message, onConfirm, onCancel }) => (
     </div>
   </div>
 );
-
+ 
 const Transactions = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -62,9 +61,9 @@ const Transactions = () => {
   const [editId, setEditId] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
   const [isToastOpen, setIsToastOpen] = useState(false);
-
+ 
   const token = localStorage.getItem('token');
-
+ 
   const columns = [
     { field: 'description', headerName: 'Description', width: 250, flex: 1 },
     { field: 'date', headerName: 'Date', width: 180, flex: 1 },
@@ -83,24 +82,24 @@ const Transactions = () => {
       )
     }
   ];
-
+ 
   const handleEdit = (editId) => {
     setEditId(editId);
     setIsDrawerOpen(true);
   };
-
+ 
   const handleDelete = (deleteId) => {
     setDeleteId(deleteId);
     setConfirmationMessage("Are you sure you want to delete this transaction?");
   };
-
+ 
   const confirmDelete = () => {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`
       }
     };
-  
+ 
   finappaxios.delete(`/api/transactions/${deleteId}`, config)
   .then(response => {
     console.log("Delete response:", response);
@@ -118,7 +117,7 @@ const Transactions = () => {
     setDeleteId(null);
   });
 };
-
+ 
   const fetchTransactions = useCallback(async () => {
     try {
       const config = {
@@ -132,23 +131,23 @@ const Transactions = () => {
       console.error('Error fetching transaction data:', error);
     }
   }, [token]);
-
+ 
   useEffect(() => {
     fetchTransactions();
   }, [fetchTransactions]);
-
+ 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
-
+ 
   const handleTransactionTypeChange = (event) => {
     setTransactionTypeFilter(event.target.value);
   };
-
+ 
   const handleStatusFilterChange = (event) => {
     setStatusFilter(event.target.value);
   };
-
+ 
   const filteredTransactions = transactions.filter(transaction => {
     const matchesSearch = (
       transaction.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -156,18 +155,18 @@ const Transactions = () => {
       transaction.amount?.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
       transaction.status?.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
+ 
     const matchesType = transactionTypeFilter ? transaction.type?.toLowerCase() === transactionTypeFilter.toLowerCase() : true;
     const matchesStatus = statusFilter ? transaction.status?.toLowerCase() === statusFilter.toLowerCase() : true;
-
+ 
     return matchesSearch && matchesType && matchesStatus;
   });
-
+ 
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
     setEditId(null);
   };
-
+ 
   return (
     <Box className="px-4">
       <Toolbar className="flex justify-between ">
@@ -191,7 +190,7 @@ const Transactions = () => {
               placeholder="Search"
               value={searchQuery}
               onChange={handleSearchChange}
-              
+             
               size='small'
               style={{ borderRadius: '20px' }}
               InputProps={{
@@ -201,7 +200,7 @@ const Transactions = () => {
                   </InputAdornment>
                 ),
               }}
-              
+             
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3} >
@@ -210,7 +209,7 @@ const Transactions = () => {
               onChange={handleTransactionTypeChange}
               displayEmpty
               variant="outlined"
-              
+             
               size='small'
             >
               <MenuItem value="">Transaction Type</MenuItem>
@@ -262,8 +261,8 @@ const Transactions = () => {
         open={isDrawerOpen}
         onClose={handleDrawerClose}
       >
-        <div className="w-30 pt-5 pl-10 pr-10">
-          <IconButton onClick={handleDrawerClose}>
+        <div className="w-30 pt-5 pl-10 pr-10 mr-2" style={{ position: 'relative' }}>
+          <IconButton onClick={handleDrawerClose} style={{ position: 'absolute', right: 0 }}>
             <CloseIcon />
           </IconButton>
           <AddNew editId={editId} onClose={handleDrawerClose} />
@@ -272,7 +271,7 @@ const Transactions = () => {
       {/* Snackbar for toast message */}
       <Snackbar
         open={isToastOpen}
-        autoHideDuration={6000} // Adjust duration as needed (milliseconds)
+        autoHideDuration={2000} // Adjust duration as needed (milliseconds)
         onClose={() => setIsToastOpen(false)}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
@@ -289,10 +288,10 @@ const Transactions = () => {
     </Box>
   );
 };
-
+ 
 export default Transactions;
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 

@@ -295,7 +295,7 @@ function ForgotPassword() {
 //   );
 // }
 
-// export default ForgotPassword;
+// export default ForgotPassword; 
 
 return (
   <div className="flex justify-center items-center h-screen bg-gray-100">

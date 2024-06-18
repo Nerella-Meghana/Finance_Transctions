@@ -510,7 +510,7 @@
 //     </div>
 //   );
 // };
-
+ 
 // export default AddNew;
 
 
@@ -563,7 +563,7 @@ const AddNew = ({ onClose, editId }) => {
           };
           const response = await finappaxios.get(`/api/transactions/${transactionId}`, config);
           setFormData(response.data);
-        } catch (error) {
+        } catch (error) { 
           console.error('Error fetching transaction:', error);
         }
       };
@@ -616,7 +616,7 @@ const AddNew = ({ onClose, editId }) => {
 
   return (
     <div className="flex items-center justify-center p-4">
-      <div className="max-w-xl w-full mx-auto p-8 bg-white rounded-3xl shadow-lg">
+      <div className="max-w-xl w-full mx-auto p-8 bg-white rounded-3xl">
         <h1 className="text-2xl font-semibold mb-6 text-left text-indigo-900">
           {editId || id ? 'Edit Transaction' : 'Add Transaction'}
         </h1>

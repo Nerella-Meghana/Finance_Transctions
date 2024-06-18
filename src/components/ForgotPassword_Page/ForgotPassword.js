@@ -422,7 +422,7 @@ function ForgotPassword() {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{ mt: 2, }}
+            sx={{ mt: 2 }}
           >
             Continue
           </Button>

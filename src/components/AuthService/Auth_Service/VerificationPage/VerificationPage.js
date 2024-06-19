@@ -1,9 +1,8 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Typography, TextField, CircularProgress, Box, Modal, Container } from '@mui/material';
 import { finappaxios } from '../../../../axios';
-
+ 
 const OtpInput = () => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [loading, setLoading] = useState(false);
@@ -14,7 +13,7 @@ const OtpInput = () => {
   const [resendText, setResendText] = useState('Resend');
   const [resendDisabled, setResendDisabled] = useState(false);
   const intervalRef = useRef(null);
-
+ 
   const handleResendClick = () => {
     setResendText('30 sec');
     setResendDisabled(true);
@@ -30,17 +29,17 @@ const OtpInput = () => {
       }
     }, 1000);
   };
-
+ 
   const handleSubmit = async () => {
     setLoading(true);
     const enteredOTP = otp.join('');
-    
+   
     try {
       const response = await finappaxios.post('/api/verify-otp', {
         otp: enteredOTP,
         email: emailPayload,
       });
-
+ 
       const data = response.data;
       setLoading(false);
       if (data.success) {
@@ -57,7 +56,7 @@ const OtpInput = () => {
       setModal({ isOpen: true, message: 'Failed to verify OTP. Please check your network connection and try again.' });
     }
   };
-
+ 
   const handleChange = (e, index) => {
     const value = e.target.value;
     if (!isNaN(value) && value.length <= 1) {
@@ -69,13 +68,13 @@ const OtpInput = () => {
       }
     }
   };
-
+ 
   const handleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && !otp[index] && index > 0) {
       inputRefs[index - 1].current.focus();
     }
   };
-
+ 
   return (
     <Box
       display="flex"
@@ -127,7 +126,7 @@ const OtpInput = () => {
             height: '40px', // Adjust height as needed
             boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Custom box shadow
             bgcolor: '#1A237E',
-
+ 
             '&:hover': {
               bgcolor: "#1565c0", // Darker blue on hover
             },
@@ -186,5 +185,5 @@ const OtpInput = () => {
     </Box>
   );
 };
-
+ 
 export default OtpInput;

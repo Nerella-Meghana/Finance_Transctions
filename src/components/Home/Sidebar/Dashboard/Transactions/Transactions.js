@@ -262,8 +262,8 @@ const Transactions = () => {
         open={isDrawerOpen}
         onClose={handleDrawerClose}
       >
-        <div className="w-30 pt-5 pl-10 pr-10">
-          <IconButton onClick={handleDrawerClose}>
+        <div className="w-30 pt-5 pl-10 pr-10 mr-2" style={{ position: 'relative' }}>
+          <IconButton onClick={handleDrawerClose}style={{ position: 'absolute', right: 0 }}> 
             <CloseIcon />
           </IconButton>
           <AddNew editId={editId} onClose={handleDrawerClose} />
@@ -291,7 +291,6 @@ const Transactions = () => {
 };
 
 export default Transactions;
-
 
 
 

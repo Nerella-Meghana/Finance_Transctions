@@ -10,7 +10,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MuiAlert from '@mui/material/Alert';
 import { finappaxios } from "../../../../../axios";
 import AddNew from './AddNew';
-
+import Navbar from '../../Navbar/Navbar';
+import TransactionCardSkeleton from './TransactionCardSkeleton';
 
 const ActionsCell = ({ onEdit, onDelete }) => (
   <div>
@@ -22,8 +23,6 @@ const ActionsCell = ({ onEdit, onDelete }) => (
     </IconButton>
   </div>
 );
-
-
 
 const ConfirmationPopup = ({ message, onConfirm, onCancel }) => (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -53,15 +52,15 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [transactionTypeFilter, setTransactionTypeFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-  // const [popupMessage, setPopupMessage] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [deleteId, setDeleteId] = useState(null);
-  const [page, setPage] = useState(0); // Current page
-  const [pageSize, setPageSize] = useState(10); // Rows per page
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [editId, setEditId] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
   const [isToastOpen, setIsToastOpen] = useState(false);
+  const [loadingTransactions, setLoadingTransactions] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -100,26 +99,28 @@ const Transactions = () => {
         Authorization: `Bearer ${token}`
       }
     };
-  
-  finappaxios.delete(`/api/transactions/${deleteId}`, config)
-  .then(response => {
-    console.log("Delete response:", response);
-    setToastMessage("Deleted successfully");
-    setIsToastOpen(true); // Open the toast message
-    setTransactions(transactions.filter(transaction => transaction.id !== deleteId));
-  })
-  .catch(error => {
-    console.error("Error deleting:", error);
-    setToastMessage("Error deleting transaction");
-    setIsToastOpen(true); // Open the toast message for error
-  })
-  .finally(() => {
-    setConfirmationMessage('');
-    setDeleteId(null);
-  });
-};
+
+    finappaxios.delete(`/api/transactions/${deleteId}`, config)
+      .then(response => {
+        console.log("Delete response:", response);
+        setToastMessage("Deleted successfully");
+        setIsToastOpen(true);
+        setTransactions(transactions.filter(transaction => transaction.id !== deleteId));
+        fetchTransactions(); 
+      })
+      .catch(error => {
+        console.error("Error deleting:", error);
+        setToastMessage("Error deleting transaction");
+        setIsToastOpen(true);
+      })
+      .finally(() => {
+        setConfirmationMessage('');
+        setDeleteId(null);
+      });
+  };
 
   const fetchTransactions = useCallback(async () => {
+    setLoadingTransactions(true);
     try {
       const config = {
         headers: {
@@ -130,6 +131,8 @@ const Transactions = () => {
       setTransactions(response.data);
     } catch (error) {
       console.error('Error fetching transaction data:', error);
+    } finally {
+      setLoadingTransactions(false);
     }
   }, [token]);
 
@@ -166,6 +169,7 @@ const Transactions = () => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
     setEditId(null);
+    fetchTransactions();
   };
 
   return (
@@ -183,16 +187,16 @@ const Transactions = () => {
           Add New
         </Button>
       </Toolbar>
-      <Box className="mb-2" >
-        <Grid container spacing={2} >
-          <Grid item xs={12} sm={6} md={4} >
+      
+      <Box className="mb-2">
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               placeholder="Search"
               value={searchQuery}
               onChange={handleSearchChange}
-              
-              size='small'
+              size="small"
               style={{ borderRadius: '20px' }}
               InputProps={{
                 startAdornment: (
@@ -201,31 +205,28 @@ const Transactions = () => {
                   </InputAdornment>
                 ),
               }}
-              
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={3} >
+          <Grid item xs={12} sm={6} md={3}>
             <Select
               value={transactionTypeFilter}
               onChange={handleTransactionTypeChange}
               displayEmpty
               variant="outlined"
-              
-              size='small'
+              size="small"
             >
               <MenuItem value="">Transaction Type</MenuItem>
               <MenuItem value="Income">Income</MenuItem>
               <MenuItem value="Expenses">Expenses</MenuItem>
             </Select>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}  >
+          <Grid item xs={12} sm={6} md={3}>
             <Select
               value={statusFilter}
               onChange={handleStatusFilterChange}
               displayEmpty
               variant="outlined"
-             
-              size='small'
+              size="small"
             >
               <MenuItem value="">All Status</MenuItem>
               <MenuItem value="Accepted">Accepted</MenuItem>
@@ -235,21 +236,30 @@ const Transactions = () => {
           </Grid>
         </Grid>
       </Box>
-      <div style={{ height: 350, width: '100%' }}>
-        <DataGrid
-          rows={filteredTransactions.slice(page * pageSize, (page + 1) * pageSize)}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10 , 15]}
-          checkboxSelection
-          rowHeight={40}
-        />
-      </div>
-     
+      
+      {loadingTransactions ? (
+        <Box className="flex flex-col items-center">
+          {[...Array(5)].map((_, index) => (
+            <TransactionCardSkeleton key={index} />
+          ))}
+        </Box>
+      ) : (
+        <div style={{ height: 350, width: '100%' }}>
+          <DataGrid
+            rows={filteredTransactions.slice(page * pageSize, (page + 1) * pageSize)}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10, 15]}
+            checkboxSelection
+            rowHeight={40}
+          />
+        </div>
+      )}
+      
       {confirmationMessage && (
         <ConfirmationPopup
           message={confirmationMessage}
@@ -257,22 +267,19 @@ const Transactions = () => {
           onCancel={() => setConfirmationMessage('')}
         />
       )}
-      <Drawer
-        anchor="right"
-        open={isDrawerOpen}
-        onClose={handleDrawerClose}
-      >
-        <div className="w-30 pt-5 pl-10 pr-10">
-          <IconButton onClick={handleDrawerClose}>
+      
+      <Drawer anchor="right" open={isDrawerOpen} onClose={handleDrawerClose}>
+        <div className="w-30 pt-5 pl-10 pr-10 mr-2" style={{ position: 'relative' }}>
+          <IconButton onClick={handleDrawerClose} style={{ position: 'absolute', right: 0 }}>
             <CloseIcon />
           </IconButton>
           <AddNew editId={editId} onClose={handleDrawerClose} />
         </div>
       </Drawer>
-      {/* Snackbar for toast message */}
+      
       <Snackbar
         open={isToastOpen}
-        autoHideDuration={6000} // Adjust duration as needed (milliseconds)
+        autoHideDuration={2000}
         onClose={() => setIsToastOpen(false)}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
@@ -280,7 +287,7 @@ const Transactions = () => {
           elevation={6}
           variant="filled"
           onClose={() => setIsToastOpen(false)}
-          severity="success" // Severity can be 'success', 'error', 'warning', 'info'
+          severity="success"
           sx={{ width: '100%' }}
         >
           {toastMessage}
@@ -291,7 +298,6 @@ const Transactions = () => {
 };
 
 export default Transactions;
-
 
 
 

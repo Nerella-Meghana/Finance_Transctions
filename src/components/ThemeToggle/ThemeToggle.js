@@ -1,21 +1,4 @@
-// import React from 'react';
-// import { useTheme } from '../../contexts/ThemeContext';
 
-// const ThemeToggle = () => {
-//   const { theme, toggleTheme } = useTheme();
-
-//   return (
-//     <button className="focus:outline-none" onClick={toggleTheme}>
-//       {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-//     </button>
-//   );
-// };
-
-// export default ThemeToggle;
-
-
-
-// themes.js
 
 import { createTheme } from '@mui/material/styles';
 

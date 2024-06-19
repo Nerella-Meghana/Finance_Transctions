@@ -21,8 +21,7 @@ const Header = () => {
       </div>
       <div className="flex items-center">
         <div className="mr-5 text-right">
-          <p>Welcome</p>
-          <p>{username}</p>
+          <p>Welcome,{username}</p>
         </div>
         <button 
           onClick={handleLogout} 

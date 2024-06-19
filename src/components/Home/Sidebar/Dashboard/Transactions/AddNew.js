@@ -215,7 +215,7 @@ const AddNew = ({ onClose, editId, fetchTransactions }) => {
                 InputLabelProps={{ shrink: true }}
                 sx={{
                   '& .MuiInputBase-input': {
-                    height: '20px',
+                    height: '35px',
                     padding: '10px',
                     display: 'flex',
                     alignItems: 'center',
@@ -245,7 +245,7 @@ const AddNew = ({ onClose, editId, fetchTransactions }) => {
                   },
                 }}
               >
-                <option value="" disabled>Select Type</option>
+                <option value="" disabled></option>
                 <option value="Income">Income</option>
                 <option value="Expenses">Expenses</option>
               </TextField>
@@ -310,7 +310,7 @@ const AddNew = ({ onClose, editId, fetchTransactions }) => {
                   },
                 }}
               >
-                <option value="" disabled>Select Payment</option>
+                <option value="" disabled></option>
                 <option value="Cash">Cash</option>
                 <option value="Credit Card">Credit Card</option>
                 <option value="Bank Transfer">Bank Transfer</option>
@@ -338,7 +338,7 @@ const AddNew = ({ onClose, editId, fetchTransactions }) => {
                   },
                 }}
               >
-                <option value="" disabled>Select Status</option>
+                <option value="" disabled></option>
                 <option value="Pending">Pending</option>
                 <option value="Accepted">Accepted</option>
                 <option value="Rejected">Rejected</option>
@@ -358,7 +358,7 @@ const AddNew = ({ onClose, editId, fetchTransactions }) => {
               variant="contained"
               fullWidth
               sx={{
-                width: '50px',
+                width: '75px',
                 marginLeft: '22px',
                 height: '40px',
                 bgcolor: '#1A237E',

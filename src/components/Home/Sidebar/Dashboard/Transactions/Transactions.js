@@ -270,7 +270,7 @@ const Transactions = () => {
       
       <Drawer anchor="right" open={isDrawerOpen} onClose={handleDrawerClose}>
         <div className="w-30 pt-5 pl-10 pr-10 mr-2" style={{ position: 'relative' }}>
-          <IconButton onClick={handleDrawerClose} style={{ position: 'absolute', right: 0 }}>
+          <IconButton onClick={handleDrawerClose} style={{ position: 'absolute', right: 0,  marginTop:50,marginRight:20}}>
             <CloseIcon />
           </IconButton>
           <AddNew editId={editId} onClose={handleDrawerClose} />
